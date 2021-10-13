@@ -1,20 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-        id="cordova-plugin-square-pos" version="0.0.1">
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-square-pos" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0">
     <name>Cordova Square POS Plugin</name>
     <description>Native calls to Square's POS API</description>
     <license>MIT</license>
     <keywords>cordova,square,pos</keywords>
-    <js-module src="www/SquarePOS.js" name="SquarePOS">
+    <js-module name="SquarePOS" src="www/SquarePOS.js">
         <clobbers target="SquarePOS" />
     </js-module>
     <platform name="ios">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Device">
-                <param name="ios-package" value="SquarePOS"/>
+        <config-file parent="/*" target="config.xml">
+            <feature name="SquarePOS">
+                <param name="ios-package" value="SquarePOS" />
             </feature>
         </config-file>
         <header-file src="src/ios/SquarePOS.h" />
         <source-file src="src/ios/SquarePOS.m" />
+    </platform>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="Cordova Square POS Plugin">
+                <param name="android-package" value="cordova-plugin-square-pos.Cordova Square POS Plugin" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <source-file src="src/android/SquarePOS.java" target-dir="src/cordova-plugin-square-pos/" />
     </platform>
 </plugin>

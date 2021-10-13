@@ -22,7 +22,12 @@
     "url": "https://github.com/nexdynamic/cordova-plugin-square-pos/issues"
   },
   "homepage": "https://github.com/nexdynamic/cordova-plugin-square-pos#readme",
-  "dependencies": {
-    "cordova": "^10.0.0"
+  "dependencies": {},
+  "cordova": {
+    "id": "cordova-plugin-square-pos",
+    "platforms": [
+      "ios",
+      "android"
+    ]
   }
 }
