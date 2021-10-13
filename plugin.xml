@@ -14,7 +14,7 @@
             </feature>
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml" />
-        <source-file src="src/android/SquarePOS.java" target-dir="src/cordova-plugin-square-pos/" />
+        <source-file src="src/android/SquarePOS.java" target-dir="src/android/" />
     </platform>
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
