@@ -1,0 +1,28 @@
+{
+  "name": "cordova-plugin-square-pos",
+  "version": "0.0.1",
+  "description": "Cordova plugin for native square point of sale api",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nexdynamic/cordova-plugin-square-pos.git"
+  },
+  "keywords": [
+    "cordova",
+    "square",
+    "pos"
+  ],
+  "author": "Nexdynamic LTD",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nexdynamic/cordova-plugin-square-pos/issues"
+  },
+  "homepage": "https://github.com/nexdynamic/cordova-plugin-square-pos#readme",
+  "dependencies": {
+    "cordova": "^10.0.0"
+  },
+}
