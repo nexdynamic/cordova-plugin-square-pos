@@ -1,28 +1,41 @@
-/********* SquarePOS.m Cordova Plugin Implementation *******/
-
+#import "SquarePOS.h"
 #import <Cordova/CDV.h>
+@import SquarePointOfSaleSDK;
+@implementation SquarePOS;
+@synthesize callbackId;
 
-@interface SquarePOS : CDVPlugin {
-  // Member variables go here.
-}
-
-- (void)coolMethod:(CDVInvokedUrlCommand*)command;
-@end
-
-@implementation SquarePOS
-
-- (void)coolMethod:(CDVInvokedUrlCommand*)command
+- (void)initTransaction:(CDVInvokedUrlCommand*)command
 {
-    CDVPluginResult* pluginResult = nil;
-    NSString* echo = [command.arguments objectAtIndex:0];
-
-    if (echo != nil && [echo length] > 0) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
-    } else {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+    self.callbackId = command.callbackId;
+    NSDictionary *options = [command.arguments objectAtIndex: 0];
+    NSNumber *amountInCents = [options objectForKey:@"amount"];
+    float floatAmount = [amountInCents floatValue];
+    NSString * currencyCode = [options objectForKey:@"currencyCode"];
+    NSString * squareApplicationId = [options objectForKey:@"squareApplicationId"];
+    NSString * squareCallbackURL = [options objectForKey:@"squareCallbackURL"];
+    NSString * notes = [options objectForKey:@"notes"];
+    NSError *error = nil;
+    
+    SCCMoney *amount = [SCCMoney moneyWithAmountCents:floatAmount*100 currencyCode:currencyCode error:&error];
+    
+    [SCCAPIRequest setApplicationID:squareApplicationId];
+    
+    SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:[NSURL URLWithString:squareCallbackURL]
+                                                            amount:amount
+                                                    userInfoString:nil
+                                                             notes:notes
+                                                        customerID:nil
+                                              supportedTenderTypes:SCCAPIRequestTenderTypeAll
+                                                 clearsDefaultFees:TRUE
+                                   returnAutomaticallyAfterPayment:TRUE
+                                                             error:&error ];
+    if (error) {
+        return;
     }
-
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    if (![SCCAPIConnection performRequest:request error:&error]) {
+        return;
+    }
+      
 }
 
 @end
