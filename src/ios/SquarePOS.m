@@ -23,12 +23,26 @@
     
     [SCCAPIRequest setApplicationID:squareApplicationId];
     
-    SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:squareCallbackURL amount:amount userInfoString:nil locationID:nil notes:notes customerID:nil supportedTenderTypes:SCCAPIRequestTenderTypeCard clearsDefaultFees:TRUE returnsAutomaticallyAfterPayment:TRUE disablesKeyedInCardEntry:FALSE skipsReceipt:TRUE error:&error];
+    SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:squareCallbackURL
+        amount:amount
+        userInfoString:nil
+        locationID:nil
+        notes:notes
+        customerID:nil
+        supportedTenderTypes:SCCAPIRequestTenderTypeCard
+        clearsDefaultFees:TRUE
+        returnsAutomaticallyAfterPayment:TRUE
+        disablesKeyedInCardEntry:FALSE
+        skipsReceipt:TRUE
+        error:&error];
     
     if (error) {
+        NSLog(@"Failed to create SCCAPIRequest with error: %@", error);
         return;
     }
+    
     if (![SCCAPIConnection performRequest:request error:&error]) {
+        NSLog(@"Failed to perform SCCAPIConnection request: %@", error);
         return;
     }
       
