@@ -1,6 +1,9 @@
 #import "SquarePOS.h"
 #import <Cordova/CDV.h>
-@import SquarePointOfSaleSDK;
+#import <SquarePointOfSaleSDK/SCCAPIRequest.h>
+#import <SquarePointOfSaleSDK/SCCMoney.h>
+#import <SquarePointOfSaleSDK/SCCAPIConnection.h>
+
 @implementation SquarePOS;
 @synthesize callbackId;
 
@@ -20,15 +23,8 @@
     
     [SCCAPIRequest setApplicationID:squareApplicationId];
     
-    SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:[NSURL URLWithString:squareCallbackURL]
-                                                            amount:amount
-                                                    userInfoString:nil
-                                                             notes:notes
-                                                        customerID:nil
-                                              supportedTenderTypes:SCCAPIRequestTenderTypeAll
-                                                 clearsDefaultFees:TRUE
-                                   returnAutomaticallyAfterPayment:TRUE
-                                                             error:&error ];
+    SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:squareCallbackURL amount:amount userInfoString:nil locationID:nil notes:notes customerID:nil supportedTenderTypes:SCCAPIRequestTenderTypeCard clearsDefaultFees:TRUE returnsAutomaticallyAfterPayment:TRUE disablesKeyedInCardEntry:FALSE skipsReceipt:TRUE error:&error];
+    
     if (error) {
         return;
     }
