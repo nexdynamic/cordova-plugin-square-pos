@@ -8,7 +8,7 @@ SquarePOS.prototype.initTransaction = function(options, success, fail) {
     var params = {
         amount: options.amount ? options.amount : 1,
         currencyCode: options.currencyCode? options.currencyCode : "GBP",
-        squareApplicationId: options.squareClientId ? options.squareClientId : "",
+        squareApplicationId: options.squareApplicationId ? options.squareApplicationId : "",
         squareCallbackURL: options.squareCallbackURL? options.squareCallbackURL : "",
         notes: options.notes ? options.notes : ""
     };
