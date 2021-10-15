@@ -20,7 +20,12 @@
     NSError *error = nil;
     
     SCCMoney *amount = [SCCMoney moneyWithAmountCents:floatAmount*100 currencyCode:currencyCode error:&error];
+    if (error) {
+        NSLog(@"Failed to create SCCMoney with error: %@", error);
+        return;
+    }
     
+
     [SCCAPIRequest setApplicationID:squareApplicationId];
     
     SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:squareCallbackURL
@@ -40,7 +45,7 @@
         NSLog(@"Failed to create SCCAPIRequest with error: %@", error);
         return;
     }
-    
+
     if (![SCCAPIConnection performRequest:request error:&error]) {
         NSLog(@"Failed to perform SCCAPIConnection request: %@", error);
         return;
