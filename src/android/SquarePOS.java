@@ -20,11 +20,11 @@ public class SquarePOS extends CordovaPlugin {
 	}
 
 	void initTransaction(JSONObject params, CallbackContext callbackContext) {
-        Number amount = params.getNumber('amount');
-        String currencyCode = params.getString('currencyCode');
-        String squareApplicationId = params.getString('squareApplicationId');
-        String squareCallbackURL = params.getString('squareCallbackURL');
-        String notes = params.getString('notes');
+        Number amount = params.getNumber("amount");
+        String currencyCode = params.getString("currencyCode");
+        String squareApplicationId = params.getString("squareApplicationId");
+        String squareCallbackURL = params.getString("squareCallbackURL");
+        String notes = params.getString("notes");
 
         PosClient posClient = PosSdk.createClient(this, squareApplicationId);
         ChargeRequest request = new ChargeRequest.Builder(amount, currencyCode).build();
