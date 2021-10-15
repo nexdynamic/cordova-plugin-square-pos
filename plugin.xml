@@ -24,7 +24,7 @@
         </config-file>
         <source-file src="src/ios/SquarePOS.m" />
         <source-file src="src/ios/SquarePOS.h" />
-        <framework src="SquarePointOfSaleSDK" type="podspec" />
+        <framework src="SquarePointOfSaleSDK" type="podspec" spec="*" />
         
     </platform>
 </plugin>
