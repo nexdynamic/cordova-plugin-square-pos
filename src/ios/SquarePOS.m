@@ -28,7 +28,8 @@
 
     [SCCAPIRequest setApplicationID:squareApplicationId];
     
-    SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:squareCallbackURL
+    
+    SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:[NSURL URLWithString:squareCallbackURL]
         amount:amount
         userInfoString:nil
         locationID:nil
