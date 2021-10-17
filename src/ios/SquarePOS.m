@@ -1,6 +1,9 @@
 #import "SquarePOS.h"
 #import <Cordova/CDV.h>
-@import SquarePointOfSaleSDK;
+#import <SquarePointOfSaleSDK/SCCAPIRequest.h>
+#import <SquarePointOfSaleSDK/SCCMoney.h>
+#import <SquarePointOfSaleSDK/SCCAPIConnection.h>
+
 @implementation SquarePOS;
 @synthesize callbackId;
 
@@ -17,22 +20,35 @@
     NSError *error = nil;
     
     SCCMoney *amount = [SCCMoney moneyWithAmountCents:floatAmount*100 currencyCode:currencyCode error:&error];
-    
-    [SCCAPIRequest setApplicationID:squareApplicationId];
-    
-    SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:[NSURL URLWithString:squareCallbackURL]
-                                                            amount:amount
-                                                    userInfoString:nil
-                                                             notes:notes
-                                                        customerID:nil
-                                              supportedTenderTypes:SCCAPIRequestTenderTypeAll
-                                                 clearsDefaultFees:TRUE
-                                   returnAutomaticallyAfterPayment:TRUE
-                                                             error:&error ];
     if (error) {
+        NSLog(@"Failed to create SCCMoney with error: %@", error);
         return;
     }
+    
+
+    [SCCAPIRequest setApplicationID:squareApplicationId];
+    
+    
+    SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:[NSURL URLWithString:squareCallbackURL]
+        amount:amount
+        userInfoString:nil
+        locationID:nil
+        notes:notes
+        customerID:nil
+        supportedTenderTypes:SCCAPIRequestTenderTypeCard
+        clearsDefaultFees:TRUE
+        returnsAutomaticallyAfterPayment:TRUE
+        disablesKeyedInCardEntry:FALSE
+        skipsReceipt:TRUE
+        error:&error];
+    
+    if (error) {
+        NSLog(@"Failed to create SCCAPIRequest with error: %@", error);
+        return;
+    }
+
     if (![SCCAPIConnection performRequest:request error:&error]) {
+        NSLog(@"Failed to perform SCCAPIConnection request: %@", error);
         return;
     }
       

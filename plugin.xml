@@ -7,7 +7,7 @@
     <js-module name="SquarePOS" src="www/SquarePOS.js">
         <clobbers target="SquarePOS" />
     </js-module>
-    <platform name="android">
+    <!-- <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="Cordova Square POS Plugin">
                 <param name="android-package" value="cordova-plugin-square-pos.SquarePOS" />
@@ -15,7 +15,7 @@
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml" />
         <source-file src="src/android/SquarePOS.java" target-dir="src/android/" />
-    </platform>
+    </platform> -->
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
             <feature name="SquarePOS">
@@ -24,5 +24,8 @@
         </config-file>
         <source-file src="src/ios/SquarePOS.h" />
         <source-file src="src/ios/SquarePOS.m" />
+        <source-file src="src/ios/SquarePOS.h" />
+        <framework src="SquarePointOfSaleSDK" type="podspec" spec="3.5.2" />
+        
     </platform>
 </plugin>
