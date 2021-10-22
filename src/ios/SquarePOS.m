@@ -16,6 +16,7 @@
     NSString * currencyCode = [options objectForKey:@"currencyCode"];
     NSString * squareApplicationId = [options objectForKey:@"squareApplicationId"];
     NSString * squareCallbackURL = [options objectForKey:@"squareCallbackURL"];
+    NSString * state = [options objectForKey:@"state"];
     NSString * notes = [options objectForKey:@"notes"];
     NSError *error = nil;
     
@@ -31,7 +32,7 @@
     
     SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:[NSURL URLWithString:squareCallbackURL]
         amount:amount
-        userInfoString:nil
+        userInfoString:state
         locationID:nil
         notes:notes
         customerID:nil
@@ -51,7 +52,7 @@
         NSLog(@"Failed to perform SCCAPIConnection request: %@", error);
         return;
     }
-      
+  
 }
 
 @end
