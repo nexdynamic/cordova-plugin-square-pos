@@ -18,6 +18,7 @@
     NSString * squareCallbackURL = [options objectForKey:@"squareCallbackURL"];
     NSString * state = [options objectForKey:@"state"];
     NSString * notes = [options objectForKey:@"notes"];
+    NSString * customerId = [options objectForKey:@"customerId"];
     NSError *error = nil;
     
     SCCMoney *amount = [SCCMoney moneyWithAmountCents:floatAmount*100 currencyCode:currencyCode error:&error];
@@ -35,7 +36,7 @@
         userInfoString:state
         locationID:nil
         notes:notes
-        customerID:nil
+        customerID:customerId
         supportedTenderTypes:SCCAPIRequestTenderTypeCard
         clearsDefaultFees:TRUE
         returnsAutomaticallyAfterPayment:TRUE

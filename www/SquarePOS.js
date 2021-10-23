@@ -1,4 +1,4 @@
-  var exec = require('cordova/exec');
+var exec = require('cordova/exec');
 var SquarePOS = function() {
 };
 SquarePOS.prototype.initTransaction = function(options, success, fail) {
@@ -11,7 +11,8 @@ SquarePOS.prototype.initTransaction = function(options, success, fail) {
         squareApplicationId: options.squareApplicationId ? options.squareApplicationId : "",
         squareCallbackURL: options.squareCallbackURL? options.squareCallbackURL : "",
         state: options.state ? options.state : "",
-        notes: options.notes ? options.notes : ""
+        notes: options.notes ? options.notes : "",
+        customerId: options.customerId ? options.customerId : ""
     };
     return cordova.exec(success, fail, "SquarePOS", "initTransaction", [params]);
 };
