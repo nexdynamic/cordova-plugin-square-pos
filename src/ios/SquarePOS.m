@@ -16,7 +16,9 @@
     NSString * currencyCode = [options objectForKey:@"currencyCode"];
     NSString * squareApplicationId = [options objectForKey:@"squareApplicationId"];
     NSString * squareCallbackURL = [options objectForKey:@"squareCallbackURL"];
+    NSString * state = [options objectForKey:@"state"];
     NSString * notes = [options objectForKey:@"notes"];
+    NSString * customerId = [options objectForKey:@"customerId"];
     NSError *error = nil;
     
     SCCMoney *amount = [SCCMoney moneyWithAmountCents:floatAmount*100 currencyCode:currencyCode error:&error];
@@ -31,10 +33,10 @@
     
     SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:[NSURL URLWithString:squareCallbackURL]
         amount:amount
-        userInfoString:nil
+        userInfoString:state
         locationID:nil
         notes:notes
-        customerID:nil
+        customerID:customerId
         supportedTenderTypes:SCCAPIRequestTenderTypeCard
         clearsDefaultFees:TRUE
         returnsAutomaticallyAfterPayment:TRUE
@@ -51,7 +53,7 @@
         NSLog(@"Failed to perform SCCAPIConnection request: %@", error);
         return;
     }
-      
+  
 }
 
 @end
