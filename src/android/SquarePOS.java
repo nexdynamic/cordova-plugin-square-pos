@@ -1,4 +1,4 @@
-package com.moduscreate.plugin;
+package SquarePOS;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -7,6 +7,10 @@ import org.json.JSONObject;
 import org.json.JSONException;
 import android.content.Context;
 import android.widget.Toast;
+import com.squareup.sdk.pos.PosClient;
+import com.squareup.sdk.pos.PosSdk;
+import com.squareup.sdk.pos.ChargeRequest;
+import com.squareup.sdk.pos.CurrencyCode;
 
 public class SquarePOS extends CordovaPlugin {
 	@Override
