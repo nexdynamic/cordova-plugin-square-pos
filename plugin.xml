@@ -25,7 +25,9 @@
         </config-file>
         <source-file src="src/ios/SquarePOS.m" />
         <source-file src="src/ios/SquarePOS.h" />
-        <framework src="SquarePointOfSaleSDK" type="podspec" spec="3.5.2" />
+        <pods>
+            <pod name="SquarePointOfSaleSDK" spec="3.5.2" />
+        </pods>>
         <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
             <array>
               <string>square-commerce-v1</string>
