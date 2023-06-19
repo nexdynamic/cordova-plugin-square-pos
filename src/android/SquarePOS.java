@@ -24,10 +24,10 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.util.Log;
 
-import com.squareup.sdk.register.ChargeRequest;
-import com.squareup.sdk.register.CurrencyCode;
-import com.squareup.sdk.register.RegisterClient;
-import com.squareup.sdk.register.RegisterSdk;
+import com.squareup.pos.ChargeRequest;
+import com.squareup.pos.CurrencyCode;
+import com.squareup.pos.RegisterClient;
+import com.squareup.pos.RegisterSdk;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -51,17 +51,17 @@ public class SquarePOS extends CordovaPlugin {
     /** Cordova Actions. */
     private static final String ACTION_SET_OPTIONS = "setOptions";
     
-    private static final String ACTION_REQUEST_CHARGE = "requestCharge";
+    private static final String ACTION_REQUEST_CHARGE = "initTransaction";
 
     /** Options */
-    private static final String OPT_APPLICATION_ID = "applicationId";
+    private static final String OPT_APPLICATION_ID = "squareApplicationId";
     private static final String OPT_AMOUNT = "amount";
     private static final String OPT_CURRENCY = "currency";
     private static final String OPT_TENDERS = "tenders";
     private static final String OPT_LOCATION_ID = "locationId";
     private static final String OPT_TIMEOUT = "timeout";
     private static final String OPT_NOTE = "note";
-    private static final String OPT_METADATA = "metadata";
+    private static final String OPT_METADATA = "state";
 
     /** Option Defaults */
     private static final String DEFAULT_CURRENCY = "USD";
@@ -229,7 +229,7 @@ public class SquarePOS extends CordovaPlugin {
             // This fires off the request to begin the app switch.
             cordova.startActivityForResult(this, chargeIntent, requestCode);
         } catch (ActivityNotFoundException e) {
-
+            Log.w(LOGTAG, String.format("Caught Exception: %s", e.getMessage()));
             // This opens Square Register's Google Play Store listing if Square Register
             // doesn't appear to be installed on the device.
             registerClient.openRegisterPlayStoreListing();
