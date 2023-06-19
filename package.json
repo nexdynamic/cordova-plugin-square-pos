@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-square-pos",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Cordova plugin for native square point of sale api",
   "main": "index.js",
   "scripts": {
