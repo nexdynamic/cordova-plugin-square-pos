@@ -44,9 +44,9 @@ import java.util.concurrent.TimeUnit;
 /**
 * This class exposes methods in Cordova that can be called from JavaScript.
 */
-public class Square extends CordovaPlugin {
+public class SquarePOS extends CordovaPlugin {
     /** Common tag used for logging statements. */
-    private static final String LOGTAG = "Square";
+    private static final String LOGTAG = "SquarePOS";
 
     /** Cordova Actions. */
     private static final String ACTION_SET_OPTIONS = "setOptions";
