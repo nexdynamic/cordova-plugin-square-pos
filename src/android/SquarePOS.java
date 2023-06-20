@@ -64,7 +64,7 @@ public class SquarePOS extends CordovaPlugin {
     private static final String OPT_METADATA = "state";
 
     /** Option Defaults */
-    private static final String DEFAULT_CURRENCY = "USD";
+    private static final String DEFAULT_CURRENCY = "GBP";
     private static final int DEFAULT_TIMEOUT = 3500;
 
     private String applicationId;
@@ -184,7 +184,7 @@ public class SquarePOS extends CordovaPlugin {
         // The amount in cents (100 corresponds to $1.00)
         int amount;
         if(options.has(OPT_AMOUNT)) {
-            amount = options.optInt(OPT_AMOUNT);
+            amount = (int)(options.optDouble(OPT_AMOUNT)*100);
         } else {
             return new PluginResult(PluginResult.Status.ERROR, "amount in cents is required for charging with Square");
         }
