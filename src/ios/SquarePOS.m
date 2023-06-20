@@ -37,11 +37,11 @@
         locationID:nil
         notes:notes
         customerID:customerId
-        supportedTenderTypes:SCCAPIRequestTenderTypeCard
         clearsDefaultFees:TRUE
         returnsAutomaticallyAfterPayment:TRUE
+        supportedTenderTypes:SCCAPIRequestTenderTypeAll
         disablesKeyedInCardEntry:FALSE
-        skipsReceipt:TRUE
+        skipsReceipt:FALSE
         error:&error];
     
     if (error) {
