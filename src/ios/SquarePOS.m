@@ -30,20 +30,19 @@
 
     [SCCAPIRequest setApplicationID:squareApplicationId];
     
-    
     SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:[NSURL URLWithString:squareCallbackURL]
         amount:amount
         userInfoString:state
         locationID:nil
         notes:notes
         customerID:customerId
+        supportedTenderTypes:SCCAPIRequestTenderTypeAll
         clearsDefaultFees:TRUE
         returnsAutomaticallyAfterPayment:TRUE
-        supportedTenderTypes:SCCAPIRequestTenderTypeAll
         disablesKeyedInCardEntry:FALSE
         skipsReceipt:FALSE
         error:&error];
-    
+
     if (error) {
         NSLog(@"Failed to create SCCAPIRequest with error: %@", error);
         return;
