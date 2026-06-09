@@ -7,11 +7,11 @@ SquarePOS.prototype.initTransaction = function(options, success, fail) {
     }
     var params = {
         amount: options.amount ? options.amount : 1,
-        currencyCode: options.currencyCode? options.currencyCode : "GBP",
+        currencyCode: options.currencyCode ? options.currencyCode : (options.currency ? options.currency : "GBP"),
         squareApplicationId: options.squareApplicationId ? options.squareApplicationId : "",
         squareCallbackURL: options.squareCallbackURL? options.squareCallbackURL : "",
         state: options.state ? options.state : "",
-        notes: options.notes ? options.notes : "",
+        notes: options.notes ? options.notes : (options.note ? options.note : ""),
         customerId: options.customerId ? options.customerId : ""
     };
     return cordova.exec(success, fail, "SquarePOS", "initTransaction", [params]);
