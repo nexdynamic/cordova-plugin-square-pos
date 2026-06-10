@@ -56,12 +56,10 @@ public class SquarePOS extends CordovaPlugin {
     /** Options */
     private static final String OPT_APPLICATION_ID = "squareApplicationId";
     private static final String OPT_AMOUNT = "amount";
-    private static final String OPT_CURRENCY = "currency";
     private static final String OPT_CURRENCY_CODE = "currencyCode";
     private static final String OPT_TENDERS = "tenders";
     private static final String OPT_LOCATION_ID = "locationId";
     private static final String OPT_TIMEOUT = "timeout";
-    private static final String OPT_NOTE = "note";
     private static final String OPT_NOTES = "notes";
     private static final String OPT_METADATA = "state";
 
@@ -168,32 +166,15 @@ public class SquarePOS extends CordovaPlugin {
         return new PluginResult(PluginResult.Status.OK);
     }
 
-    private String getFirstStringOption(final JSONObject options, final String... keys) {
-        if (options == null || keys == null) return null;
-
-        for (final String key : keys) {
-            if (!options.has(key)) continue;
-
-            final String value = options.optString(key, null);
-            if (value != null && !value.trim().isEmpty()) return value;
-        }
-
-        return null;
-    }
-
     private void setOptions(final JSONObject options) {
         if(options == null) return;
 
         if(options.has(OPT_APPLICATION_ID)) this.applicationId = options.optString(OPT_APPLICATION_ID);
-        // Prefer current "currencyCode" from the JS bridge, but still accept legacy "currency".
-        final String currencyValue = getFirstStringOption(options, OPT_CURRENCY_CODE, OPT_CURRENCY);
-        if(currencyValue != null) this.currency = currencyValue;
+        if(options.has(OPT_CURRENCY_CODE)) this.currency = options.optString(OPT_CURRENCY_CODE);
         if(options.has(OPT_TENDERS)) this.tenders  = options.optJSONArray(OPT_TENDERS);
         if(options.has(OPT_LOCATION_ID)) this.locationId = options.optString(OPT_LOCATION_ID);
         if(options.has(OPT_TIMEOUT)) this.timeout  = options.optInt(OPT_TIMEOUT);
-        // Prefer current "notes" from the JS bridge, but still accept legacy "note".
-        final String noteValue = getFirstStringOption(options, OPT_NOTES, OPT_NOTE);
-        if(noteValue != null) this.note = noteValue;
+        if(options.has(OPT_NOTES)) this.note = options.optString(OPT_NOTES);
         if(options.has(OPT_METADATA)) this.metadata = options.optString(OPT_METADATA);
     }
     
