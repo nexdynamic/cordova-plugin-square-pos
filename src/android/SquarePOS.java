@@ -56,11 +56,11 @@ public class SquarePOS extends CordovaPlugin {
     /** Options */
     private static final String OPT_APPLICATION_ID = "squareApplicationId";
     private static final String OPT_AMOUNT = "amount";
-    private static final String OPT_CURRENCY = "currency";
+    private static final String OPT_CURRENCY_CODE = "currencyCode";
     private static final String OPT_TENDERS = "tenders";
     private static final String OPT_LOCATION_ID = "locationId";
     private static final String OPT_TIMEOUT = "timeout";
-    private static final String OPT_NOTE = "note";
+    private static final String OPT_NOTES = "notes";
     private static final String OPT_METADATA = "state";
 
     /** Option Defaults */
@@ -170,11 +170,11 @@ public class SquarePOS extends CordovaPlugin {
         if(options == null) return;
 
         if(options.has(OPT_APPLICATION_ID)) this.applicationId = options.optString(OPT_APPLICATION_ID);
-        if(options.has(OPT_CURRENCY)) this.currency = options.optString(OPT_CURRENCY);
+        if(options.has(OPT_CURRENCY_CODE)) this.currency = options.optString(OPT_CURRENCY_CODE);
         if(options.has(OPT_TENDERS)) this.tenders  = options.optJSONArray(OPT_TENDERS);
         if(options.has(OPT_LOCATION_ID)) this.locationId = options.optString(OPT_LOCATION_ID);
         if(options.has(OPT_TIMEOUT)) this.timeout  = options.optInt(OPT_TIMEOUT);
-        if(options.has(OPT_NOTE)) this.note = options.optString(OPT_NOTE);
+        if(options.has(OPT_NOTES)) this.note = options.optString(OPT_NOTES);
         if(options.has(OPT_METADATA)) this.metadata = options.optString(OPT_METADATA);
     }
     
