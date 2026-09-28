@@ -47,7 +47,7 @@
                 <source url="https://cdn.cocoapods.org/"/>
             </config>
             <pods>
-                <pod name="SquarePointOfSaleSDK" spec="~> 3.5" />
+                <pod name="SquarePointOfSaleSDK" spec="3.5.4" />
             </pods>
         </podspec>
         <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
